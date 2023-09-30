@@ -1,0 +1,12 @@
+@import 'tailwindcss/base';
+
+/* Globals */
+
+@import 'tailwindcss/components';
+
+/* Blocks */
+@import 'blocks/attribution.css';
+
+/* Utilities */
+
+@import 'tailwindcss/utilities';

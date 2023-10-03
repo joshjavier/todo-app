@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* josefin-sans-regular - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/josefin-sans-v32-latin-regular.woff2') format('woff2');
+  }
+
+  /* josefin-sans-700 - latin */
+  @font-face {
+    font-display: swap;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/josefin-sans-v32-latin-700.woff2') format('woff2');
+  }
+}
+
+@layer components {
+  .rounded-frame {
+    @apply rounded-[5px] bg-white text-very-dark-grayish-blue text-xs overflow-hidden;
+  }
+}

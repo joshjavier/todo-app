@@ -6,6 +6,7 @@ export default {
       colors: {
         'very-light-gray': '#FAFAFA',
         'very-light-grayish-blue': '#E4E5F1',
+        'light-grayish-blue': '#D2D3DB',
         'dark-grayish-blue': '#9394A5',
         'very-dark-grayish-blue': '#484B6A',
       },

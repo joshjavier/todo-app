@@ -1,7 +1,11 @@
-#checkboxOutline {
-  @apply fill-white stroke-very-light-grayish-blue;
+[href='#checkboxOutline'] {
+  @apply stroke-very-light-grayish-blue;
 }
 
 input[type='checkbox']:not(:checked) + svg > [href='#checkboxFill'] {
   opacity: 0;
+}
+
+input[type='checkbox']:hover + svg > [href='#checkboxOutline'] {
+  stroke: url(#checkboxBg);
 }

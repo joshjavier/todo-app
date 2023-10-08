@@ -21,31 +21,16 @@ function SvgSprite() {
           <stop offset="1" stopColor="#C058F3" />
         </linearGradient>
 
-        <circle
-          id="checkboxOutline"
-          cx="10"
-          cy="10"
-          r="9.5"
-          fill="white"
-          stroke="black"
-        />
-
-        <circle
-          id="checkboxFill"
-          cx="10"
-          cy="10"
-          r="10"
-          fill="url(#checkboxBg)"
-        />
-
+        {/* Custom checkbox parts */}
+        <circle id="checkboxOutline" cx="10" cy="10" r="9.5" />
+        <circle id="checkboxFill" cx="10" cy="10" r="10" />
         <polyline
           id="checkboxCheckmark"
           points="6.66675,10.2534 8.91333,12.5 13.9133,7.5"
           fill="none"
-          stroke="white"
-          strokeWidth="2"
         />
 
+        {/* Cross icon */}
         <symbol id="cross" fill="none" stroke="currentColor">
           <line x1="0.5" y1="0.5" x2="11.5" y2="11.5" />
           <line x1="0.5" y1="11.5" x2="11.5" y2="0.5" />

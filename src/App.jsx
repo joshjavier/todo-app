@@ -1,15 +1,34 @@
+import { useState } from 'react';
 import SvgSprite from './components/SvgSprite';
 import TodoItem from './components/TodoItem';
 
 function App() {
-  const todoItems = [
-    { text: 'Complete online JavaScript course', isDone: true },
-    { text: 'Jog around the park 3x' },
-    { text: '10 minutes meditation' },
-    { text: 'Read for 1 hour' },
-    { text: 'Pick up groceries' },
-    { text: 'Complete Todo App on Frontend Mentor' },
-  ];
+  const [todos, setTodos] = useState([
+    { id: 1, text: 'Complete online JavaScript course', done: true },
+    { id: 2, text: 'Jog around the park 3x' },
+    { id: 3, text: '10 minutes meditation' },
+    { id: 4, text: 'Read for 1 hour' },
+    { id: 5, text: 'Pick up groceries' },
+    { id: 6, text: 'Complete Todo App on Frontend Mentor' },
+  ]);
+
+  const activeTodos = todos.filter((todo) => !todo.done);
+
+  const toggleStatus = (id) => {
+    setTodos((todos) =>
+      todos.map((todo) => {
+        return todo.id === id ? { ...todo, done: !todo.done } : todo;
+      }),
+    );
+  };
+
+  const removeTodo = (id) => {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+  };
+
+  const clearCompleted = () => {
+    setTodos((todos) => todos.filter((todo) => !todo.done));
+  };
 
   return (
     <>
@@ -28,7 +47,7 @@ function App() {
         <div className="space-y-4">
           <div className="rounded-frame px-5 py-[14px] flex gap-3 items-center focus-within:ring">
             <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
-              <use href="#checkboxOutline" />
+              <use href="#checkboxOutline" fill="white" stroke="black" />
             </svg>
             <input
               type="text"
@@ -39,17 +58,25 @@ function App() {
           </div>
           <div className="rounded-frame">
             <ul>
-              {todoItems.map((todo) => (
+              {todos.map((todo) => (
                 <TodoItem
-                  key={crypto.randomUUID()}
-                  text={todo.text}
-                  isDone={todo.isDone}
+                  key={todo.id}
+                  todo={todo}
+                  toggleStatus={toggleStatus}
+                  removeTodo={removeTodo}
                 />
               ))}
             </ul>
-            <div>
-              <p>5 items left</p>
-              <p>Clear Completed</p>
+            <div className="px-5 pt-4 pb-5 flex justify-between text-dark-grayish-blue">
+              <p>
+                {activeTodos.length ? `${activeTodos.length} items left` : ''}
+              </p>
+              <button
+                className="hover:text-very-dark-grayish-blue"
+                onClick={() => clearCompleted()}
+              >
+                Clear Completed
+              </button>
             </div>
           </div>
           <div className="rounded-frame text-sm text-dark-grayish-blue font-bold px-6 py-[15px] flex gap-x-[18px] justify-center">

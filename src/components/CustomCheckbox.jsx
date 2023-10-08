@@ -1,12 +1,12 @@
 import './CustomCheckbox.css';
 
-function CustomCheckbox({ done, handleChange }) {
+function CustomCheckbox({ checked = false, toggleChecked }) {
   return (
     <>
       <input
         type="checkbox"
-        checked={done}
-        onChange={handleChange}
+        checked={checked}
+        onChange={toggleChecked}
         className="absolute w-5 h-5 opacity-0 peer cursor-pointer"
       />
       <svg
@@ -16,12 +16,9 @@ function CustomCheckbox({ done, handleChange }) {
         className="peer-focus-visible:ring rounded-full"
         aria-hidden="true"
       >
-        <use href="#checkboxOutline" />
-        <use href="#checkboxFill" />
-        <use
-          href="#checkboxCheckmark"
-          className="fill-none stroke-white stroke-2"
-        />
+        <use href="#checkboxOutline" fill="white" stroke="black" />
+        <use href="#checkboxFill" fill="url(#checkboxBg)" />
+        <use href="#checkboxCheckmark" stroke="white" strokeWidth="2" />
       </svg>
     </>
   );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SvgSprite from './components/SvgSprite';
 import TodoItem from './components/TodoItem';
+import ViewFilters from './components/ViewFilters';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -11,8 +12,16 @@ function App() {
     { id: 5, text: 'Pick up groceries' },
     { id: 6, text: 'Complete Todo App on Frontend Mentor' },
   ]);
+  const [view, setView] = useState('All');
 
   const activeTodos = todos.filter((todo) => !todo.done);
+  const completedTodos = todos.filter((todo) => todo.done);
+  const shownTodos =
+    view === 'Active'
+      ? activeTodos
+      : view === 'Completed'
+      ? completedTodos
+      : todos;
 
   const toggleStatus = (id) => {
     setTodos((todos) =>
@@ -58,7 +67,7 @@ function App() {
           </div>
           <div className="rounded-frame">
             <ul>
-              {todos.map((todo) => (
+              {shownTodos.map((todo) => (
                 <TodoItem
                   key={todo.id}
                   todo={todo}
@@ -69,21 +78,25 @@ function App() {
             </ul>
             <div className="px-5 pt-4 pb-5 flex justify-between text-dark-grayish-blue">
               <p>
-                {activeTodos.length ? `${activeTodos.length} items left` : ''}
+                {activeTodos.length > 1
+                  ? `${activeTodos.length} items left`
+                  : activeTodos.length === 1
+                  ? `1 item left`
+                  : ''}
               </p>
               <button
                 className="hover:text-very-dark-grayish-blue"
                 onClick={() => clearCompleted()}
+                hidden={completedTodos.length === 0}
               >
                 Clear Completed
               </button>
             </div>
           </div>
-          <div className="rounded-frame text-sm text-dark-grayish-blue font-bold px-6 py-[15px] flex gap-x-[18px] justify-center">
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
-          </div>
+          <ViewFilters
+            currentView={view}
+            handleViewChange={(event) => setView(event.target.value)}
+          />
         </div>
 
         <div>Drag and drop to reorder list</div>

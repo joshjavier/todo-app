@@ -3,7 +3,7 @@ import DeleteButton from './DeleteButton';
 
 function TodoItem({ todo, toggleStatus, removeTodo }) {
   return (
-    <li className="flex justify-between gap-3 px-5 py-4 border-b border-very-light-grayish-blue">
+    <li className="flex justify-between items-center gap-3 px-5 py-4 border-b border-very-light-grayish-blue">
       <label className="flex items-center gap-3">
         <CustomCheckbox
           checked={todo.done}

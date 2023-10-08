@@ -24,6 +24,6 @@
 
 @layer components {
   .rounded-frame {
-    @apply rounded-[5px] bg-white text-very-dark-grayish-blue text-xs overflow-hidden;
+    @apply rounded-[5px] bg-white text-very-dark-grayish-blue text-xs overflow-hidden shadow;
   }
 }

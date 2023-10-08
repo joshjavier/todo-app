@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import SvgSprite from './components/SvgSprite';
 import TodoItem from './components/TodoItem';
 import ViewFilters from './components/ViewFilters';
@@ -23,12 +24,26 @@ function App() {
       ? completedTodos
       : todos;
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    addTodo(formData.get('todo'));
+    form.reset();
+  };
+
   const toggleStatus = (id) => {
     setTodos((todos) =>
       todos.map((todo) => {
         return todo.id === id ? { ...todo, done: !todo.done } : todo;
       }),
     );
+  };
+
+  const addTodo = (text) => {
+    const id = nanoid();
+    const newTodo = { id, text };
+    setTodos((todos) => [...todos, newTodo]);
   };
 
   const removeTodo = (id) => {
@@ -54,17 +69,26 @@ function App() {
         </header>
 
         <div className="space-y-4">
-          <div className="rounded-frame px-5 py-[14px] flex gap-3 items-center focus-within:ring">
-            <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
-              <use href="#checkboxOutline" fill="white" stroke="black" />
-            </svg>
-            <input
-              type="text"
-              placeholder="Create a new todo..."
-              aria-label="Create a new todo item"
-              className="w-full bg-transparent placeholder:text-dark-grayish-blue outline-none"
-            />
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="rounded-frame px-5 py-[14px] flex gap-3 items-center focus-within:ring">
+              <svg
+                viewBox="0 0 20 20"
+                width="20"
+                height="20"
+                aria-hidden="true"
+                className="shrink-0"
+              >
+                <use href="#checkboxOutline" fill="white" stroke="black" />
+              </svg>
+              <input
+                type="text"
+                name="todo"
+                placeholder="Create a new todo..."
+                aria-label="Create a new todo item"
+                className="w-full bg-transparent placeholder:text-dark-grayish-blue outline-none"
+              />
+            </div>
+          </form>
           <div className="rounded-frame">
             <ul>
               {shownTodos.map((todo) => (
@@ -99,7 +123,9 @@ function App() {
           />
         </div>
 
-        <div>Drag and drop to reorder list</div>
+        <div className="text-center text-sm text-dark-grayish-blue">
+          Drag and drop to reorder list
+        </div>
       </div>
     </>
   );

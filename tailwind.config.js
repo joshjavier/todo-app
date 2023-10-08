@@ -11,6 +11,9 @@ export default {
         'dark-grayish-blue': '#9394A5',
         'very-dark-grayish-blue': '#484B6A',
       },
+      boxShadow: {
+        DEFAULT: '0px 35px 50px -15px rgba(194, 195, 214, 0.50)',
+      },
       fontFamily: {
         sans: ['Josefin Sans', 'sans-serif'],
       },

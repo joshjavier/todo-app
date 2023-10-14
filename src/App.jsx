@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import SvgSprite from './components/SvgSprite';
+import TodoInput from './components/TodoInput';
 import TodoItem from './components/TodoItem';
 import ViewFilters from './components/ViewFilters';
 
@@ -64,32 +65,13 @@ function App() {
           className="w-full absolute -z-10 inset-x-0 top-0"
         />
 
-        <header className="text-white">
+        <header className="wrapper text-white">
           <h1 className="font-bold text-2xl tracking-widest">TODO</h1>
         </header>
 
-        <div className="space-y-4">
-          <form onSubmit={handleSubmit}>
-            <div className="rounded-frame px-5 py-[14px] flex gap-3 items-center focus-within:ring">
-              <svg
-                viewBox="0 0 20 20"
-                width="20"
-                height="20"
-                aria-hidden="true"
-                className="shrink-0"
-              >
-                <use href="#checkboxOutline" fill="white" stroke="black" />
-              </svg>
-              <input
-                type="text"
-                name="todo"
-                placeholder="Create a new todo..."
-                aria-label="Create a new todo item"
-                className="w-full bg-transparent placeholder:text-dark-grayish-blue outline-none"
-              />
-            </div>
-          </form>
-          <div className="rounded-frame">
+        <div className="wrapper space-y-4">
+          <TodoInput handleSubmit={handleSubmit} />
+          <div className="frame">
             <ul>
               {shownTodos.map((todo) => (
                 <TodoItem
@@ -100,7 +82,7 @@ function App() {
                 />
               ))}
             </ul>
-            <div className="px-5 pt-4 pb-5 flex justify-between text-dark-grayish-blue">
+            <div className="px-5 pt-4 pb-5 flex justify-between text-dark-grayish-blue border-t border-very-light-grayish-blue">
               <p>
                 {activeTodos.length > 1
                   ? `${activeTodos.length} items left`

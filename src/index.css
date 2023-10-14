@@ -23,7 +23,15 @@
 }
 
 @layer components {
-  .rounded-frame {
-    @apply rounded-[5px] bg-white text-very-dark-grayish-blue text-xs overflow-hidden shadow;
+  .frame {
+    @apply rounded-[5px] bg-white text-very-dark-grayish-blue shadow;
+  }
+
+  .wrapper {
+    @apply max-w-[540px] mx-auto;
+  }
+
+  .text-todo {
+    @apply text-xs sm:text-lg;
   }
 }

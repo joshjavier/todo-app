@@ -7,13 +7,13 @@ function CustomCheckbox({ checked = false, toggleChecked }) {
         type="checkbox"
         checked={checked}
         onChange={toggleChecked}
-        className="absolute w-5 h-5 opacity-0 peer cursor-pointer"
+        className="absolute w-5 h-5 sm:w-6 sm:h-6 opacity-0 peer cursor-pointer"
       />
       <svg
         viewBox="0 0 20 20"
         width="20"
         height="20"
-        className="peer-focus-visible:ring rounded-full shrink-0"
+        className="peer-focus-visible:ring rounded-full shrink-0 sm:w-6 sm:h-6"
         aria-hidden="true"
       >
         <use href="#checkboxOutline" fill="white" stroke="black" />

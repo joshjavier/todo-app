@@ -12,7 +12,7 @@ function ViewFilters({ currentView, handleViewChange }) {
             onChange={handleViewChange}
             className="peer absolute cursor-pointer w-full h-full opacity-0"
           />
-          <span className="peer-checked:text-bright-blue peer-[&:hover:not(:checked)]:text-very-dark-grayish-blue peer-focus-visible:ring">
+          <span className="peer-checked:text-bright-blue peer-[&:hover:not(:checked)]:text-very-dark-grayish-blue peer-focus-visible:ring peer-focus-visible:ring-amber-400">
             {view}
           </span>
         </label>

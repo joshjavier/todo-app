@@ -109,7 +109,7 @@ function App() {
                 />
               </div>
               <button
-                className="hover:text-very-dark-grayish-blue disabled:invisible justify-self-end"
+                className="hover:text-very-dark-grayish-blue disabled:invisible justify-self-end focus:outline-none focus:ring focus:ring-amber-400"
                 onClick={() => clearCompleted()}
                 disabled={completedTodos.length === 0}
               >

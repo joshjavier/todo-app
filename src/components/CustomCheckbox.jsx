@@ -13,7 +13,7 @@ function CustomCheckbox({ checked = false, toggleChecked }) {
         viewBox="0 0 20 20"
         width="20"
         height="20"
-        className="peer-focus-visible:ring rounded-full shrink-0 sm:w-6 sm:h-6"
+        className="peer-focus-visible:ring peer-focus-visible:ring-amber-400 rounded-full shrink-0 sm:w-6 sm:h-6"
         aria-hidden="true"
       >
         <use href="#checkboxOutline" fill="white" stroke="black" />

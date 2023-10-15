@@ -16,7 +16,7 @@ function TodoInput({ handleSubmit }) {
           name="todo"
           placeholder="Create a new todo…"
           aria-label="Create a new todo…"
-          className="absolute rounded-[5px] inset-0 w-full h-full pl-[52px] sm:pl-[72px] bg-transparent placeholder:text-dark-grayish-blue focus:outline-none focus:ring"
+          className="absolute rounded-[5px] inset-0 w-full h-full pl-[52px] pr-5 sm:pr-6 sm:pl-[72px] bg-transparent placeholder:text-dark-grayish-blue focus:outline-none focus:ring"
         />
       </div>
     </form>

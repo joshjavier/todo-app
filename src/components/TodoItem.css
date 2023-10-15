@@ -1,0 +1,15 @@
+/*
+  Add a bottom border to all todo items, except the last one
+  if there are 6 or more items.
+*/
+li.text-todo {
+  @apply border-b border-very-light-grayish-blue;
+}
+
+li.text-todo:last-child {
+  @apply border-b-0;
+}
+
+li.text-todo:nth-child(-n + 5) {
+  @apply border-b;
+}

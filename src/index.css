@@ -32,6 +32,6 @@
   }
 
   .text-todo {
-    @apply text-xs sm:text-lg;
+    @apply text-[12px] sm:text-[18px] leading-tight;
   }
 }

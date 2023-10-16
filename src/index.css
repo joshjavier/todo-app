@@ -25,6 +25,7 @@
 @layer components {
   .frame {
     @apply rounded-[5px] bg-white text-very-dark-grayish-blue shadow;
+    @apply dark:bg-very-dark-desaturated-blue dark:text-light-grayish-blue-dark dark:shadow-black/50;
   }
 
   .wrapper {

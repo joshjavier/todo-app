@@ -1,9 +1,6 @@
-[href='#checkboxOutline'] {
-  @apply stroke-very-light-grayish-blue;
-}
-
-input[type='checkbox']:not(:checked) + svg > [href='#checkboxFill'] {
-  opacity: 0;
+input[type='checkbox']:checked + svg > [href='#checkboxFill'],
+input[type='checkbox']:checked + svg > [href='#checkboxCheckmark'] {
+  opacity: 1;
 }
 
 input[type='checkbox']:hover + svg > [href='#checkboxOutline'] {

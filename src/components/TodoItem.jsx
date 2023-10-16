@@ -10,7 +10,7 @@ function TodoItem({ todo, toggleStatus, removeTodo }) {
           checked={todo.done}
           toggleChecked={() => toggleStatus(todo.id)}
         />
-        <span className="peer-checked:line-through peer-checked:text-light-grayish-blue">
+        <span className="peer-checked:line-through peer-checked:text-light-grayish-blue dark:peer-checked:text-very-dark-grayish-blue-dark-1">
           {todo.text}
         </span>
       </label>

@@ -3,7 +3,7 @@
   if there are 6 or more items.
 */
 li.text-todo {
-  @apply border-b border-very-light-grayish-blue;
+  @apply border-b border-very-light-grayish-blue dark:border-very-dark-grayish-blue-dark-2;
 }
 
 li.text-todo:last-child {

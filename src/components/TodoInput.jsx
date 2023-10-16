@@ -9,14 +9,19 @@ function TodoInput({ handleSubmit }) {
           aria-hidden="true"
           className="shrink-0 sm:w-6 sm:h-6"
         >
-          <use href="#checkboxOutline" fill="white" stroke="black" />
+          <use
+            href="#checkboxOutline"
+            fill="none"
+            stroke="currentColor"
+            className="stroke-very-light-grayish-blue dark:stroke-very-dark-grayish-blue-dark-2"
+          />
         </svg>
         <input
           type="text"
           name="todo"
           placeholder="Create a new todo…"
           aria-label="Create a new todo…"
-          className="absolute rounded-[5px] inset-0 w-full h-full pl-[52px] pr-5 sm:pr-6 sm:pl-[72px] bg-transparent placeholder:text-dark-grayish-blue focus:outline-none focus:ring focus:ring-amber-400"
+          className="absolute rounded-[5px] inset-0 w-full h-full pl-[52px] pr-5 sm:pr-6 sm:pl-[72px] bg-transparent placeholder:text-dark-grayish-blue dark:placeholder:text-dark-grayish-blue-dark focus:outline-none focus:ring focus:ring-amber-400"
         />
       </div>
     </form>

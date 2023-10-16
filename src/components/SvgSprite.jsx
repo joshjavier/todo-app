@@ -31,7 +31,7 @@ function SvgSprite() {
         />
 
         {/* Cross icon */}
-        <symbol id="cross" fill="none" stroke="currentColor">
+        <symbol id="cross" fill="none">
           <line x1="0.5" y1="0.5" x2="11.5" y2="11.5" />
           <line x1="0.5" y1="11.5" x2="11.5" y2="0.5" />
         </symbol>

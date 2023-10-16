@@ -94,7 +94,7 @@ function App() {
             ) : (
               <EmptyState />
             )}
-            <div className="text-xs sm:text-[14px] mt-auto px-5 sm:px-6 pt-4 pb-5 grid grid-flow-col auto-cols-fr text-dark-grayish-blue border-t border-very-light-grayish-blue">
+            <div className="text-xs sm:text-[14px] mt-auto px-5 sm:px-6 pt-4 pb-5 grid grid-flow-col auto-cols-fr text-dark-grayish-blue dark:text-dark-grayish-blue-dark border-t border-very-light-grayish-blue dark:border-very-dark-grayish-blue-dark-2">
               <p>
                 {activeTodos.length > 1
                   ? `${activeTodos.length} items left`
@@ -109,7 +109,7 @@ function App() {
                 />
               </div>
               <button
-                className="hover:text-very-dark-grayish-blue disabled:invisible justify-self-end focus:outline-none focus:ring focus:ring-amber-400"
+                className="hover:text-very-dark-grayish-blue dark:hover:text-very-light-grayish-blue disabled:invisible justify-self-end focus:outline-none focus:ring focus:ring-amber-400"
                 onClick={() => clearCompleted()}
                 disabled={completedTodos.length === 0}
               >
@@ -117,7 +117,7 @@ function App() {
               </button>
             </div>
           </div>
-          <div className="frame text-sm px-6 py-[15px] sm:hidden">
+          <div className="frame text-dark-grayish-blue text-sm px-6 py-[15px] sm:hidden">
             <ViewFilters
               currentView={view}
               handleViewChange={(event) => setView(event.target.value)}
@@ -125,7 +125,7 @@ function App() {
           </div>
         </div>
 
-        <div className="text-center text-sm text-dark-grayish-blue">
+        <div className="text-center text-sm text-dark-grayish-blue dark:text-dark-grayish-blue-dark">
           Drag and drop to reorder list
         </div>
       </div>

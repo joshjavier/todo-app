@@ -7,6 +7,17 @@
     <title>Frontend Mentor | Todo app</title>
     <meta name="description" content="A todo app built with React. Challenge by Frontend Mentor." />
     <meta name="color-scheme" content="light dark" />
+    <script>
+      // Set initial theme on page load
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
   <body class="bg-very-light-gray dark:bg-very-dark-blue">
     <main>

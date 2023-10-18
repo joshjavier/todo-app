@@ -3,7 +3,7 @@ function DeleteButton({ todo, removeTodo }) {
     <button
       aria-label={`Delete ${todo.text}`}
       onClick={() => removeTodo(todo.id)}
-      className="sm:invisible group-hover:visible group-focus-within:visible focus:outline-none focus:ring focus:ring-amber-400"
+      className="sm:invisible group-hover:visible group-focus-within:visible focus:outline-none focus-visible:ring focus-visible:ring-amber-400"
     >
       <svg
         viewBox="0 0 12 12"
@@ -13,7 +13,7 @@ function DeleteButton({ todo, removeTodo }) {
         stroke="currentColor"
         className="dark:stroke-dark-grayish-blue-dark"
       >
-        <use href="#cross" />
+        <use href="#icon-cross" />
       </svg>
     </button>
   );

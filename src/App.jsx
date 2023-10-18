@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import SvgSprite from './components/SvgSprite';
 import TodoInput from './components/TodoInput';
 import TodoItem from './components/TodoItem';
 import ViewFilters from './components/ViewFilters';
 import EmptyState from './components/EmptyState';
+import ThemeSwitcher from './components/ThemeSwitcher';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -16,6 +17,7 @@ function App() {
     { id: 6, text: 'Complete Todo App on Frontend Mentor' },
   ]);
   const [view, setView] = useState('All');
+  const [theme, setTheme] = useState('');
 
   const activeTodos = todos.filter((todo) => !todo.done);
   const completedTodos = todos.filter((todo) => todo.done);
@@ -56,14 +58,34 @@ function App() {
     setTodos((todos) => todos.filter((todo) => !todo.done));
   };
 
+  const toggleTheme = () => {
+    setTheme((theme) => {
+      if (theme === 'dark') {
+        localStorage.setItem('theme', 'light');
+        document.documentElement.classList.remove('dark');
+        return 'light';
+      } else {
+        localStorage.setItem('theme', 'dark');
+        document.documentElement.classList.add('dark');
+        return 'dark';
+      }
+    });
+  };
+
+  useEffect(() => {
+    setTheme(
+      document.documentElement.classList.contains('dark') ? 'dark' : 'light',
+    );
+  }, []);
+
   return (
     <>
       <SvgSprite />
 
       {/* Background */}
       <img
-        srcSet="/images/bg-mobile-light.jpg 375w, /images/bg-desktop-light.jpg 1440w"
-        src="/images/bg-mobile-light.jpg"
+        srcSet={`/images/bg-mobile-${theme}.jpg 375w, /images/bg-desktop-${theme}.jpg 1440w`}
+        src={`/images/bg-mobile-${theme}.jpg`}
         alt=""
         width="375"
         height="200"
@@ -71,10 +93,13 @@ function App() {
       />
 
       <div className="px-6 py-12 sm:py-[70px] space-y-10">
-        <header className="wrapper text-white">
+        <header className="wrapper text-white flex items-center justify-between">
           <h1 className="font-bold text-[27px] tracking-[9.5px] sm:text-[40px] sm:tracking-[15px]">
             TODO
           </h1>
+          <div className="-translate-y-0.5 sm:-translate-y-1">
+            <ThemeSwitcher theme={theme} toggle={toggleTheme} />
+          </div>
         </header>
 
         <div className="wrapper space-y-4">

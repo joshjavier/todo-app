@@ -36,13 +36,14 @@ Users should be able to:
 ### Screenshots
 
 <!-- Light Mode -->
-<img src="./screenshots/desktop-light.png" alt="" width="1440" height="800" style="height: auto" />
-<img src="./screenshots/mobile-light.png" alt="" width="375" height="737" style="height: auto" />
+
+![](./screenshots/desktop-light.png)
+![](./screenshots/mobile-light.png)
 
 ### Links
 
-- Solution URL: TBD
-- Live Site URL: TBD
+- Solution URL: https://www.frontendmentor.io/solutions/todo-app-with-draganddrop-and-lightdark-modes-using-react-HXGOK8LBcP
+- Live Site URL: https://todo-fem.netlify.app/
 
 ## My process
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import {
   DndContext,
@@ -15,6 +15,8 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
+
+import { useTheme } from './hooks/useTheme';
 
 import SvgSprite from './components/SvgSprite';
 import TodoInput from './components/TodoInput';
@@ -33,7 +35,7 @@ function App() {
     { id: 6, text: 'Complete Todo App on Frontend Mentor' },
   ]);
   const [view, setView] = useState('All');
-  const [theme, setTheme] = useState('');
+  const { theme, toggle } = useTheme();
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: { distance: 20 },
@@ -95,26 +97,6 @@ function App() {
     setTodos((todos) => todos.filter((todo) => !todo.done));
   };
 
-  const toggleTheme = () => {
-    setTheme((theme) => {
-      if (theme === 'dark') {
-        localStorage.setItem('theme', 'light');
-        document.documentElement.classList.remove('dark');
-        return 'light';
-      } else {
-        localStorage.setItem('theme', 'dark');
-        document.documentElement.classList.add('dark');
-        return 'dark';
-      }
-    });
-  };
-
-  useEffect(() => {
-    setTheme(
-      document.documentElement.classList.contains('dark') ? 'dark' : 'light',
-    );
-  }, []);
-
   return (
     <>
       <SvgSprite />
@@ -135,7 +117,7 @@ function App() {
             TODO
           </h1>
           <div className="-translate-y-0.5 sm:-translate-y-1">
-            <ThemeSwitcher theme={theme} toggle={toggleTheme} />
+            <ThemeSwitcher theme={theme} toggle={toggle} />
           </div>
         </header>
 

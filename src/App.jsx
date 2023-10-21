@@ -1,20 +1,5 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core';
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 
 import { useTheme } from './hooks/useTheme';
 
@@ -24,6 +9,7 @@ import TodoItem from './components/TodoItem';
 import ViewFilters from './components/ViewFilters';
 import EmptyState from './components/EmptyState';
 import ThemeSwitcher from './components/ThemeSwitcher';
+import DragAndDropContainer from './components/DragAndDropContainer';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -36,14 +22,6 @@ function App() {
   ]);
   const [view, setView] = useState('All');
   const { theme, toggle } = useTheme();
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: { distance: 20 },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
-  );
 
   const activeTodos = todos.filter((todo) => !todo.done);
   const completedTodos = todos.filter((todo) => todo.done);
@@ -60,19 +38,6 @@ function App() {
     const formData = new FormData(form);
     addTodo(formData.get('todo'));
     form.reset();
-  };
-
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-
-    if (active.id !== over.id) {
-      setTodos((todos) => {
-        const oldIndex = todos.findIndex((todo) => todo.id === active.id);
-        const newIndex = todos.findIndex((todo) => todo.id === over.id);
-
-        return arrayMove(todos, oldIndex, newIndex);
-      });
-    }
   };
 
   const toggleStatus = (id) => {
@@ -125,29 +90,19 @@ function App() {
           <TodoInput handleSubmit={handleSubmit} />
           <div className="frame min-h-[370px] sm:min-h-[442px] max-h-[50vh] sm:max-h-[60vh] flex flex-col">
             {todos.length > 0 ? (
-              <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                modifiers={[restrictToVerticalAxis]}
-              >
-                <SortableContext
-                  items={todos}
-                  strategy={verticalListSortingStrategy}
-                >
-                  <ul className="overflow-y-scroll">
-                    {shownTodos.map((todo) => (
-                      <TodoItem
-                        key={todo.id}
-                        id={todo.id}
-                        todo={todo}
-                        toggleStatus={toggleStatus}
-                        removeTodo={removeTodo}
-                      />
-                    ))}
-                  </ul>
-                </SortableContext>
-              </DndContext>
+              <DragAndDropContainer todos={todos} setTodos={setTodos}>
+                <ul className="overflow-y-scroll">
+                  {shownTodos.map((todo) => (
+                    <TodoItem
+                      key={todo.id}
+                      id={todo.id}
+                      todo={todo}
+                      toggleStatus={toggleStatus}
+                      removeTodo={removeTodo}
+                    />
+                  ))}
+                </ul>
+              </DragAndDropContainer>
             ) : (
               <EmptyState />
             )}
